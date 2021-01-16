@@ -1,0 +1,145 @@
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: #FBFBF8;
+}
+
+.headerName {
+	font-family: 'East Sea Dokdo', cursive;
+	font-size: 60px;
+}
+
+.comingSoon {
+	font-family: "East Sea Dokdo", cursive;
+	font-size: 60px;
+	display: block;
+	margin: 100px auto auto auto;
+	width: 100%;
+	text-align: center;
+}
+
+ul.linksHeader {
+	display: flex;
+	list-style-type: none;
+	justify-content: space-around;
+	align-items: center;
+	width: 400px;
+}
+
+#about {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.homeImageContainer {
+	width: 80%;
+	margin: auto;
+}
+
+.quoteOne {
+	margin: 20px;
+	padding-right: 40px;
+	width: 100%;
+	text-align: right;
+}
+
+.quoteTwo {
+	margin: 20px;
+	margin-top: 80px;
+	padding-left: 40px;
+	width: 100%;
+	text-align: left;
+}
+
+.quote {
+	font-family: 'Quicksand', sans-serif;
+	text-transform: uppercase;
+}
+
+.quoteAuthor {
+	font-style: oblique;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.linksHeader {
+	display: flex;
+	justify-content: center;
+	max-width: 300px;
+	padding-left: 0;
+}
+
+.homeImageContainer {
+	width: 100%;
+	height: 100%;
+	max-width: 1000px;
+	max-height: 700px;
+	overflow: hidden;
+}
+
+.imageWrapperTwo {
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.homeImageContainer img {
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 1000px;
+  height: 700px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
