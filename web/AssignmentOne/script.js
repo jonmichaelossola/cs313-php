@@ -4,5 +4,5 @@ var xmlhttp=new XMLHttpRequest();
 		console.log(this.responseText);
     }
   }
-  xmlhttp.open("GET","./test.php");
+  xmlhttp.open("GET","./test.php?test=true");
   xmlhttp.send();
