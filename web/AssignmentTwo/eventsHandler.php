@@ -1,6 +1,5 @@
 <?php
-	echo "test";
-	// if ($_GET["getItems"] === "true") {
-	// 	echo "<li>test</li><li>test</li><li>test</li>"
-	// }
+	if (isset($_GET["getItems"])) {
+		echo "<li>test</li><li>test</li><li>test</li>"
+	}
 ?>
