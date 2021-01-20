@@ -31,7 +31,7 @@
 	if (isset($_GET['removeItem'])) {
 		$item = $_GET['removeItem'];
 		if (($key = array_search($item, $_SESSION["cart"])) !== false) {
-			unset($_SESSION["cart"][$key]);
+			array_splice($_SESSION["cart"], $key, 1);
 			$_SESSION["numItems"] -= 1;
 		}
 		$temp = array();
