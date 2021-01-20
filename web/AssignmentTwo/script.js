@@ -21,7 +21,7 @@ function addToCart(e) {
 		if (this.readyState === 4 && this.status === 200) {
 			var test = JSON.parse(this.responseText);
 			// do stuff
-			console.log(test);
+			document.getElementById("cartReference").innerHTML = `See Cart (${test[1]}) items`;
 		}
 	}
 	xmlhttp.open("GET", `./eventsHandler.php?item=${e.target.getAttribute("data-animal")}`);
