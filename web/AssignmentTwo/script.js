@@ -21,7 +21,7 @@ function getItems(reason) {
 					str = "<li><h2>You have no items in your cart</h2></li>"
 				}
 				document.getElementById("cartItemsHeader").innerHTML = `Your Cart Items (${data[1]})`;
-				document.getElementById("cartItems").innherHTML = str;
+				document.getElementById("cartItems").innerHTML = str;
 			} else if (reason === "index") {
 				// do stuff
 			}
