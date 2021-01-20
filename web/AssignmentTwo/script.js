@@ -20,7 +20,7 @@ function addToCart(e) {
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status ===200) {
 			console.log(this.responseText);
-			var test = JSON.parse(responseText);
+			var test = JSON.parse(this.responseText);
 			// do stuff
 			console.log(test);
 		}
