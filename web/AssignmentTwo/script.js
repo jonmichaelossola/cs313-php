@@ -6,7 +6,7 @@ function getItems(reason) {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status === 200) {
-			const data = JSON_parse(this.responseText);
+			const data = JSON.parse(this.responseText);
 			console.log(data);
 			if (reason === "cart") {
 				// parse items into items unordered list
