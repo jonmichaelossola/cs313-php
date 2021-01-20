@@ -48,7 +48,19 @@ function removeFromCart(e) {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status === 200) {
-			var test = JSON.parse(this.responseText);
+			// re display items in the cart.
+			const data = JSON.parse(this.responseText);
+			let str = "";
+			if (data[0].length > 0) {
+				for (var i = 0; i < data[0].length; i++) {
+					var item = data[0][i];
+					str += `<li><h3>${item}</h3><div><button data-animal=${item} onclick="removeFromCart(event)">Remove From Cart</button></div></li>`
+				}
+			} else {
+				str = "<li><h2>You have no items in your cart</h2></li>"
+			}
+			document.getElementById("cartItemsHeader").innerHTML = `Your Cart Items (${data[1]})`;
+			document.getElementById("cartItems").innerHTML = str;
 		}
 	}
 	xmlhttp.open("GET", `./eventsHandler.php?removeItem=${e.target.getAttribute("data-animal")}`);
