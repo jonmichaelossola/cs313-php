@@ -12,9 +12,11 @@ function getItems(reason) {
 				// parse items into items unordered list
 				let str = "";
 				if (data[0].length > 0) {
-					data[0].map(item => {
+					console.log(data[0]);
+					for (var i = 0; i < data[0].length; i++) {
+						var item = data[0][i];
 						str += `<li><h3>${item}</h3><div><button data-animal=${item} onclick="removeFromCart(event)">Remove From Cart</button></div></li>`
-					})
+					}
 				} else {
 					str = "<li><h2>You have no items in your cart</h2></li>"
 				}
