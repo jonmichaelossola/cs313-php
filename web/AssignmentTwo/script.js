@@ -51,6 +51,7 @@ function removeFromCart(e) {
 			// re display items in the cart.
 			const data = JSON.parse(this.responseText);
 			let str = "";
+			console.log(data[0]);
 			if (data[0].length > 0) {
 				for (var i = 0; i < data[0].length; i++) {
 					var item = data[0][i];
