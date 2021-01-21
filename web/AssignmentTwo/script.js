@@ -5,12 +5,10 @@ function getItems(reason) {
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status === 200) {
 			const data = JSON.parse(this.responseText);
-			console.log(data);
 			if (reason === "cart") {
 				// parse items into items unordered list
 				let str = "";
 				if (data[0].length > 0) {
-					console.log(data[0]);
 					for (var i = 0; i < data[0].length; i++) {
 						var item = data[0][i];
 						str += `<li><h3>${item}</h3><div><button data-animal=${item} onclick="removeFromCart(event)">Remove From Cart</button></div></li>`
@@ -21,11 +19,11 @@ function getItems(reason) {
 				document.getElementById("cartItemsHeader").innerHTML = `Your Cart Items (${data[1]})`;
 				document.getElementById("cartItems").innerHTML = str;
 			} else if (reason === "index") {
-				// do stuff
+				document.getElementById("cartReference").innerHTML = `See Cart (${data[1]}) items`
 			}
 		}
 	}
-	xmlhttp.open("GET", "./eventsHandler.php?getItems=true");
+	xmlhttp.open("GET", `./eventsHandler.php?getItems=true`);
 	xmlhttp.send();
 }
 
