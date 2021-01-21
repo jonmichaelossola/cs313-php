@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 	if (!isset($_SESSION["cart"])) {
 		$_SESSION["cart"] = array();
 		$_SESSION["numItems"] = 0;
@@ -37,6 +38,21 @@
 		$temp = array();
 		array_push($temp, $_SESSION["cart"]);
 		array_push($temp, $_SESSION["numItems"]);
+		$myJson = json_encode($temp);
+		echo $myJson;
+	}
+
+	if (isset($_GET['confirmPurchase'])) {
+		$address = htmlspecialchars($_GET["address"]);
+		$_SESSION["address"] = $address;
+		echo "success";
+	}
+
+	if(isset($_GET["getAllDetails"])) {
+		$temp = array();
+		array_push($temp, $_SESSION["cart"]);
+		array_push($temp, $_SESSION["numItems"]);
+		array_push($temp, $_SESSION["address"]);
 		$myJson = json_encode($temp);
 		echo $myJson;
 	}

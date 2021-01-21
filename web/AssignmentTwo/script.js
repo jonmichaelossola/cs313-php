@@ -1,5 +1,3 @@
-console.log('hello?');
-
 function getItems(reason) {
 	// Make request to server for shopping cart items
 	// Should return html list of items to put into <ul>
@@ -36,7 +34,6 @@ function addToCart(e) {
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status === 200) {
 			var test = JSON.parse(this.responseText);
-			// do stuff
 			document.getElementById("cartReference").innerHTML = `See Cart (${test[1]}) items`;
 		}
 	}
@@ -65,5 +62,43 @@ function removeFromCart(e) {
 		}
 	}
 	xmlhttp.open("GET", `./eventsHandler.php?removeItem=${e.target.getAttribute("data-animal")}`);
+	xmlhttp.send();
+}
+
+function completePurchase() {
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (this.readyState === 4 && this.status === 200) {
+			const data = JSON.parse(this.responseText);
+			if (data === "success") {
+				window.location.href = "./confirm.html";
+			}
+		}
+	}
+	xmlhttp.open("GET", `./eventsHandler.php?confirmPurchase=true&address=${document.getElementById('address').value}`);
+	xmlhttp.send();
+}
+
+function getConfirmationInfo() {
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+		if (this.readyState === 4 && this.status === 200) {
+			// re display items in the cart.
+			const data = JSON.parse(this.responseText);
+			let str = "";
+			if (data[0].length > 0) {
+				for (var i = 0; i < data[0].length; i++) {
+					var item = data[0][i];
+					str += `<li><h3>${item}</h3><div></div></li>`
+				}
+			} else {
+				str = "<li><h2>You have no items in your cart</h2></li>"
+			}
+			document.getElementById("cartItemsHeader").innerHTML = `Your Purchased Items (${data[1]})`;
+			document.getElementById("address").innerHTML = `Address: ${data[2]}`;
+			document.getElementById("cartItems").innerHTML = str;
+		}
+	}
+	xmlhttp.open("GET", `./eventsHandler.php?getAllDetails=true`);
 	xmlhttp.send();
 }
