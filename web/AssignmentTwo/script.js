@@ -69,7 +69,7 @@ function completePurchase() {
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (this.readyState === 4 && this.status === 200) {
-			const data = JSON.parse(this.responseText);
+			const data = this.responseText;
 			if (data === "success") {
 				window.location.href = "./confirm.html";
 			}
