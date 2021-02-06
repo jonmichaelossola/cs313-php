@@ -15,7 +15,7 @@
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   if (isset($_GET["test"])) {
-    echo $_SESSION["userID"];
+    echo 'SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'';
   }
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
