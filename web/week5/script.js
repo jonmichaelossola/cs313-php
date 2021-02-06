@@ -44,7 +44,13 @@ function getPosts(e) {
 
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
+      const posts = JSON.parse(this.responseText);
+      let str = "<ul>";
+      posts.forEach(function(arr) {
+        str += `<li><div><p class="location">${arr.location}</p><p class="date">${arr.timehours}</p><p class="description">${arr.description}</p></div></li>`;
+      });
+      str += "</ul>";
+      document.getElementById("PostsContainer").innerHTML = str;
     }
   };
 

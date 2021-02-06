@@ -2,14 +2,17 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" href="./styles.css">
 </head>
 <body onload="getPosts(event)">
-	<a href="./plan.php">Make a post</a>
-	<a href="./index.php">Log Out</a>
-	<div id="PostsContainer">
-		
-	</div>
+	<div>
+		<a href="./plan.php">Make a post</a>
+		<a href="./index.php">Log Out</a>
+		<div id="PostsContainer">
+			
+		</div>
 
-	<script src="./script.js"></script>
+		<script src="./script.js"></script>
+	</div>
 </body>
 </html>
