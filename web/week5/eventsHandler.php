@@ -15,7 +15,7 @@
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
     $name = "";
-    foreach ($db->query('SELECT * FROM players WHERE name=' . $_POST["username"] . ' AND password=' . $_POST["password"] as $row)
+    foreach ($db->query('SELECT * FROM players WHERE name=' . $_POST["username"] . ' AND password=' . $_POST["password"]) as $row)
     {
       $name = $row["name"] . ' ' . $row["password"];
     }
