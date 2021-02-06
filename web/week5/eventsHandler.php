@@ -23,7 +23,7 @@
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
     echo "success";
-    foreach ($db->query('SELECT username, password FROM note_user WHERE username=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
+    foreach ($db->query('SELECT name, password FROM note_user WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
     {
       if ($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
         echo "successfully logged in";
@@ -38,7 +38,7 @@
     while ($row = $statement->fetch(PDO::FETCH_ASSOC))
     {
       $arr = array();
-      array_push($arr, $row[""])
+      array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"], $row["playerid"])
       array_push($plans, )
     }
     echo "statement";
