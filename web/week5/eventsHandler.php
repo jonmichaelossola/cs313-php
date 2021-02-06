@@ -22,7 +22,7 @@
   }
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
-    echo "success";
+    echo $_POST["username"];
     // foreach ($db->query('SELECT name, password FROM note_user WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
     // {
     //   if ($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
