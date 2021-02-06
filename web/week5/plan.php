@@ -24,6 +24,6 @@
         <h1>Your Posts</h1>
         <div id="yourPostsWrapper"></div>
     </div>
-  <script src="./scripts.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
