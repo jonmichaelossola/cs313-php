@@ -31,12 +31,13 @@
     echo $name;
   }
 
-  if (isset($_GET["id"]) && isset($_GET["posts"])) {
+  if (isset($_GET["posts"])) {
     $plans = array();
     $arr = array();
-    foreach ($db->query('SELECT * FROM posts') as $row)
+    foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      $plans = $row;
+      array_push($arr, $row["description"]);
+      array_push($plans, $arr);
     }
     echo $plans;
   }
