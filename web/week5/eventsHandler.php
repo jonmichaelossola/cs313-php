@@ -34,7 +34,7 @@
   if (isset($_GET["id"]) && isset($_GET["posts"])) {
     $plans = array();
     $arr = array();
-    foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
+    foreach ($db->query('SELECT * FROM posts') as $row)
     {
       array_push($arr, $row["description"]);
       array_push($plans, $arr);
