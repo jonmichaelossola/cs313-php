@@ -36,7 +36,7 @@
     $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      array_push($arr, $row["description"]);
+      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
       array_push($plans, $arr);
     }
     echo json_encode($plans);
