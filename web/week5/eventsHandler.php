@@ -29,13 +29,15 @@
 
   if (isset($_GET["id"]) && isset($_GET["posts"])) {
     $plans = array();
+    $test = array();
     $statement = $db->query('SELECT * FROM plans WHERE userId!=\'' . $_SESSION["userID"] . '\'');
     while ($row = $statement->fetch(PDO::FETCH_ASSOC))
     {
       $arr = array();
       array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"]);
       array_push($plans, $arr);
+      array_push($test, $row["description"])
     }
-    echo json_encode($plans);
+    echo json_encode($test);
   }
 ?>

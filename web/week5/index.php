@@ -10,7 +10,7 @@
 	<button onclick="getUserInformation(event)">Submit</button>
 	<br />
 	<br />
-	<h1>Password</h1>
+	<h1>Register</h1>
 	<input type="text" id="RegisterUsername" />
 	<input type="text" id="RegisterPassword" />
 	<button onclick="submitRegistrationInformation(event)">Submit</button>
