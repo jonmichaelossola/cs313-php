@@ -48,7 +48,9 @@ function getPosts(e) {
       const posts = JSON.parse(this.responseText);
       let str = "<ul>";
       posts.forEach(function(arr) {
-        str += `<li><div><p class="location">${arr.location}</p><p class="date">${arr.timehours}</p><p class="description">${arr.description}</p></div></li>`;
+        str += `<li><div><p class="location">${arr[2]}</p><p class="date">${
+          arr[3]
+        }</p><p class="description">${arr[0]}</p></div></li>`;
       });
       str += "</ul>";
       document.getElementById("PostsContainer").innerHTML = str;
