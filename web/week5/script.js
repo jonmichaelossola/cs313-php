@@ -31,9 +31,8 @@ function getPosts(e) {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
-      if (this.responseText === "success") {
-        // window.location.href.push("home.php");
-      }
+      let json = JSON.parse(this.responseText);
+      console.log(json);
     }
   };
 

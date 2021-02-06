@@ -9,5 +9,7 @@
 	<div id="PostsContainer">
 		
 	</div>
+
+	<script src="./script.js"></script>
 </body>
 </html>
