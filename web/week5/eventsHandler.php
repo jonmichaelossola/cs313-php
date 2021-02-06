@@ -33,15 +33,12 @@
 
   if (isset($_GET["id"]) && isset($_GET["posts"])) {
     $plans = array();
-    $test = "";
-    $statement = $db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'');
-    while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+    $arr = array();
+    foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      $arr = array();
-      array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"]);
+      array_push($arr, $row["description"]);
       array_push($plans, $arr);
-      $test = $row["description"];
     }
-    echo $test;
+    echo $plans;
   }
 ?>
