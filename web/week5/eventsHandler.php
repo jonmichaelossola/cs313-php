@@ -42,6 +42,6 @@
       array_push($plans, $arr);
       array_push($test, $row["description"]);
     }
-    echo json_encode($test);
+    echo $test;
   }
 ?>
