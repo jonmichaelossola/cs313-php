@@ -14,12 +14,15 @@
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
-    echo $_POST["password"];
-    // foreach ($db->query('SELECT * FROM players WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
-    // {
-    //   echo $row["name"] . $row["password"] . $row["id"];
-    // }
+    $name = "";
+    foreach ($db->query('SELECT * FROM players') as $row)
+    {
+      $name = $row["name"];
+    }
+    echo $name;
   }
+
+  // WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']
 
   // if (isset($_GET["id"]) && isset($_GET["posts"])) {
   //   echo "here we go";
