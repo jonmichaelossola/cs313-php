@@ -36,7 +36,7 @@
       $arr = array();
       array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"]);
       array_push($plans, $arr);
-      array_push($test, $row["description"])
+      array_push($test, $row["description"]);
     }
     echo json_encode($test);
   }
