@@ -3,9 +3,10 @@
 <head>
 	<title></title>
 </head>
-<body onload="">
+<body onload="getPosts(event)">
 	<a href="./plan.php">Make a post</a>
-	<div>
+	<a href="./index.php">Log Out</a>
+	<div id="PostsContainer">
 		
 	</div>
 </body>

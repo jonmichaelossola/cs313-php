@@ -1,4 +1,5 @@
 <?php
+  session_start();
   $dbUrl = getenv('DATABASE_URL');
 
   $dbOpts = parse_url($dbUrl);
@@ -19,21 +20,22 @@
     {
       $name = $row["name"] . ' ' . $row["password"];
     }
+    if (empty($name)) {
+      echo "failed";
+    }
+    $_SESSION["userID"] = $row["id"]; 
     echo $name;
   }
 
-  // WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']
-
-  // if (isset($_GET["id"]) && isset($_GET["posts"])) {
-  //   echo "here we go";
-  //   $plans = array();
-  //   $statement = $db->query('SELECT * FROM plans WHERE userId!=' . $_GET["id"]);
-  //   while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-  //   {
-  //     $arr = array();
-  //     array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"], $row["playerid"])
-  //     array_push($plans, )
-  //   }
-  //   echo "statement";
-  // }
+  if (isset($_GET["id"]) && isset($_GET["posts"])) {
+    $plans = array();
+    $statement = $db->query('SELECT * FROM plans WHERE userId!=\'' . $_SESSION["userID"] . '\'');
+    while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+    {
+      $arr = array();
+      array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"]);
+      array_push($plans, $arr);
+    }
+    echo json_encode($plans);
+  }
 ?>
