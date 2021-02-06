@@ -36,8 +36,7 @@
     $arr = array();
     foreach ($db->query('SELECT * FROM posts') as $row)
     {
-      array_push($arr, $row["description"]);
-      array_push($plans, $arr);
+      $plans = $row;
     }
     echo $plans;
   }
