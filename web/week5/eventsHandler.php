@@ -14,6 +14,10 @@
 
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+  if (isset($_GET["test"])) {
+    echo $_SESSION["userID"];
+  }
+
   if (isset($_POST["username"]) && isset($_POST["password"])) {
     $name = "";
     foreach ($db->query('SELECT * FROM players WHERE name=\'' . $_POST["username"] . '\' AND password=\'' . $_POST["password"] . '\'') as $row)

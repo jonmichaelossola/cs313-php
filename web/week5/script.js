@@ -19,6 +19,20 @@ function getUserInformation(e) {
   request.send(`username=${username}&password=${password}`);
 }
 
+function test() {
+  let request = new XMLHttpRequest();
+  request.open("GET", `./eventsHandler.php?test=true`, true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+    }
+  };
+
+  request.send();
+}
+
 function submitRegistrationInformation(e) {
   // to make when we can update and create data
 }
