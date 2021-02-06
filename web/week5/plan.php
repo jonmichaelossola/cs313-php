@@ -8,16 +8,17 @@
 </head>
 
 <body onload="getSelfInformation()">
+    <h1>Your Information</h1>
+    <div id="selfInfoWrapper">
+        
+    </div>
+
     <div class="createPlanWrapper">
         <h1>Create a Plan</h1>
         <input type="text" class="createPlanInput" placeholder="Description" />
         <input type="time" placeholder="Time" />
         <input type="text" class="createPlanInput" placeholder="Location" />
         <button onclick="submitPlan(event)">Submit</button>
-    </div>
-
-    <div id="selfInfoWrapper">
-        
     </div>
 
     <div>

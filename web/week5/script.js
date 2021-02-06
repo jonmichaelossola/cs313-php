@@ -53,7 +53,7 @@ function getPosts(e) {
           Number(arr[3].split(":")[0]) > 12
             ? (Number(arr[3].split(":")[0]) - 12).toString()
             : arr[3].split(":")[0]
-        }${arr[3].split(":")[1]}${
+        }:${arr[3].split(":")[1]} ${
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
         }</p><p class="description">${arr[0]}</p></div></li>`;
       });
@@ -80,8 +80,14 @@ function getSelfPosts() {
       const posts = JSON.parse(this.responseText);
       let str = "<ul>";
       posts.forEach(function(arr) {
-        str += `<li><div><p class="location">${arr[2]}</p><p class="date">${
-          arr[3]
+        str += `<li class="plansListIndividual"><div><p class="location">Location: ${
+          arr[2]
+        }</p><p class="date">Time: ${
+          Number(arr[3].split(":")[0]) > 12
+            ? (Number(arr[3].split(":")[0]) - 12).toString()
+            : arr[3].split(":")[0]
+        }:${arr[3].split(":")[1]} ${
+          Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
         }</p><p class="description">${arr[0]}</p></div></li>`;
       });
       str += "</ul>";
