@@ -44,7 +44,6 @@ function getPosts(e) {
 
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
       const posts = JSON.parse(this.responseText);
       let str = "<ul>";
       posts.forEach(function(arr) {
@@ -72,7 +71,6 @@ function getSelfPosts() {
 
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
       const posts = JSON.parse(this.responseText);
       let str = "<ul>";
       posts.forEach(function(arr) {
@@ -95,7 +93,6 @@ function getSelfInfo() {
 
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
       const info = JSON.parse(this.responseText);
       const str = `<h3>${info[0]}</h3><p>${info[1]}</p>`;
       document.getElementById("selfInfoWrapper").innerHTML = str;
