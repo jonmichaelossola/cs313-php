@@ -16,7 +16,7 @@
         <button onclick="submitPlan(event)">Submit</button>
     </div>
 
-    <div class="selfInfoWrapper">
+    <div id="selfInfoWrapper">
         
     </div>
 
