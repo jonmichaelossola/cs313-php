@@ -39,6 +39,6 @@
       array_push($arr, $row["description"]);
       array_push($plans, $arr);
     }
-    echo $plans;
+    echo json_encode($plans);
   }
 ?>
