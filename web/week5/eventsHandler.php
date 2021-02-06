@@ -31,16 +31,16 @@
     // }
   }
 
-  if (isset($_GET["id"]) && isset($_GET["posts"])) {
-    echo "here we go";
-    $plans = array();
-    $statement = $db->query('SELECT * FROM plans WHERE userId!=' . $_GET["id"]);
-    while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-    {
-      $arr = array();
-      array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"], $row["playerid"])
-      array_push($plans, )
-    }
-    echo "statement";
-  }
+  // if (isset($_GET["id"]) && isset($_GET["posts"])) {
+  //   echo "here we go";
+  //   $plans = array();
+  //   $statement = $db->query('SELECT * FROM plans WHERE userId!=' . $_GET["id"]);
+  //   while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+  //   {
+  //     $arr = array();
+  //     array_push($arr, $row["time"], $row["location"], $row["description"], $row["timehours"], $row["playerid"])
+  //     array_push($plans, )
+  //   }
+  //   echo "statement";
+  // }
 ?>
