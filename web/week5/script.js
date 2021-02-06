@@ -49,9 +49,13 @@ function getPosts(e) {
       posts.forEach(function(arr) {
         str += `<li class="plansListIndividual"><div><p class="location">Location: ${
           arr[2]
-        }</p><p class="date">Time: ${arr[3]}</p><p class="description">${
-          arr[0]
-        }</p></div></li>`;
+        }</p><p class="date">Time: ${
+          Number(arr[3].split(":")[0]) > 12
+            ? (Number(arr[3].split(":")[0]) - 12).toString()
+            : arr[3].split(":")[0]
+        }${arr[3].split(":")[1]}${
+          Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
+        }</p><p class="description">${arr[0]}</p></div></li>`;
       });
       str += "</ul>";
       document.getElementById("PostsContainer").innerHTML = str;
