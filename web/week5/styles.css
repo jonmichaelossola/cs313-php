@@ -46,3 +46,33 @@ ul {
     border-bottom: 1px solid black;
     padding: 10px 40px;
 }
+
+.selfHeader {
+    text-align: center;
+}
+
+.selfInfoWrapper {
+    text-align: center;
+    border-bottom: 1px solid black;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.yourPostsHeaderYouKnow {
+    text-align: center;
+    margin-top: 15vh;
+}
+
+.createPlanWrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    text-align: left;
+    padding-bottom: 50px;
+    border-bottom: 1px solid black;
+}

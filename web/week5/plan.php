@@ -8,7 +8,7 @@
 </head>
 
 <body onload="getSelfInformation()">
-    <h1>Your Information</h1>
+    <h1 class="selfHeader">Your Information</h1>
     <div id="selfInfoWrapper">
         
     </div>
@@ -22,7 +22,7 @@
     </div>
 
     <div>
-        <h1>Your Posts</h1>
+        <h1 class="yourPostsHeaderYouKnow">Your Posts</h1>
         <div id="yourPostsWrapper"></div>
     </div>
   <script src="./script.js"></script>
