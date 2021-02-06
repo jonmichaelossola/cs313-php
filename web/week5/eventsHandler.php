@@ -23,12 +23,10 @@
 
   if (isset($_POST["username"]) && isset($_POST["password"])) {
     echo $_POST["username"];
-    // foreach ($db->query('SELECT name, password FROM note_user WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
-    // {
-    //   if ($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
-    //     echo "successfully logged in";
-    //   }
-    // }
+    foreach ($db->query('SELECT name, password FROM players WHERE name=' . $_POST['username'] . ' AND password=' . $_POST['password']) as $row)
+    {
+      echo $row["name"] . $row["password"] . $row["id"];
+    }
   }
 
   // if (isset($_GET["id"]) && isset($_GET["posts"])) {
