@@ -44,6 +44,7 @@ function getPosts(e) {
 
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      console.log(this.resonseText);
       const posts = JSON.parse(this.responseText);
       let str = "<ul>";
       posts.forEach(function(arr) {
