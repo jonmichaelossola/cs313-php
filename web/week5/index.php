@@ -7,14 +7,14 @@
 <body>
 	<div class="loginWrapper">
 		<h1>Login</h1>
-		<input id="Username" type="text" />
-		<input id="Password" type="text" />
+		<input id="Username" placeholder="User Name" type="text" />
+		<input id="Password" placeholder="Password" type="password" />
 		<button onclick="getUserInformation(event)">Submit</button>
 		<br />
 		<br />
 		<h1>Register</h1>
-		<input type="text" id="RegisterUsername" />
-		<input type="text" id="RegisterPassword" />
+		<input type="text" placeholder="User Name" id="RegisterUsername" />
+		<input type="password" placeholder="Password" id="RegisterPassword" />
 		<button onclick="submitRegistrationInformation(event)">Submit</button>
 	</div>
 

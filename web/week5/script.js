@@ -45,11 +45,13 @@ function getPosts(e) {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const posts = JSON.parse(this.responseText);
-      let str = "<ul>";
+      let str = `<ul class="plansList">`;
       posts.forEach(function(arr) {
-        str += `<li><div><p class="location">${arr[2]}</p><p class="date">${
-          arr[3]
-        }</p><p class="description">${arr[0]}</p></div></li>`;
+        str += `<li class="plansListIndividual"><div><p class="location">Location: ${
+          arr[2]
+        }</p><p class="date">Time: ${arr[3]}</p><p class="description">${
+          arr[0]
+        }</p></div></li>`;
       });
       str += "</ul>";
       document.getElementById("PostsContainer").innerHTML = str;
