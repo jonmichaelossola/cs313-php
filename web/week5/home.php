@@ -5,9 +5,11 @@
 	<link rel="stylesheet" href="./styles.css">
 </head>
 <body onload="getPosts(event)">
-	<div>
-		<a href="./plan.php">Make a post</a>
-		<a href="./index.php">Log Out</a>
+	<div class="homeWrapper">
+		<div class="linksHomeWrapper">
+			<a href="./plan.php">Make a post</a>
+			<a href="./index.php">Log Out</a>
+		</div>
 		<div id="PostsContainer">
 			
 		</div>

@@ -59,3 +59,50 @@ function getPosts(e) {
 
   request.send();
 }
+
+function getSelfInformation() {
+  getSelfPosts();
+  getSelfInfo();
+}
+
+function getSelfPosts() {
+  let request = new XMLHttpRequest();
+  request.open("GET", `./eventsHandler.php?selfposts=true`, true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      const posts = JSON.parse(this.responseText);
+      let str = "<ul>";
+      posts.forEach(function(arr) {
+        str += `<li><div><p class="location">${arr[2]}</p><p class="date">${
+          arr[3]
+        }</p><p class="description">${arr[0]}</p></div></li>`;
+      });
+      str += "</ul>";
+      document.getElementById("yourPostsWrapper").innerHTML = str;
+    }
+  };
+
+  request.send();
+}
+
+function getSelfInfo() {
+  let request = new XMLHttpRequest();
+  request.open("GET", `./eventsHandler.php?self=true`, true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      const info = JSON.parse(this.responseText);
+      const str = `<h3>${info[0]}</h3><p>${info[1]}</p>`;
+      document.getElementById("selfInfoWrapper").innerHTML = str;
+    }
+  };
+
+  request.send();
+}
+
+function submitPlan(e) {}

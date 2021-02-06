@@ -41,4 +41,24 @@
     }
     echo json_encode($plans);
   }
+
+  if (isset($_GET["selfposts"])) {
+    $plans = array();
+    $arr = array();
+    foreach ($db->query('SELECT * FROM posts WHERE playerid=\'' . $_SESSION["userID"] . '\'') as $row)
+    {
+      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
+      array_push($plans, $arr);
+    }
+    echo json_encode($plans);
+  }
+
+  if (isset($_GET["self"])) {
+    $arr = array();
+    foreach ($db->query('SELECT * FROM players WHERE id=\'' . $_SESSION["userID"] . '\'')  as $row)
+    {
+      array_push($arr, $row["name"], $row["city"]);
+    }
+    echo json_encode($arr);
+  }
 ?>
