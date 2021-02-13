@@ -52,11 +52,11 @@ function getPosts(e) {
         }:${arr[3].split(":")[1]} ${
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
         }</p><p class="description">${arr[0]}</p></div><div>${
-          arr[4] === false
+          arr[5] === false
             ? `<button onclick="likePost(event)">I am going!</button>`
             : ""
         }<p>${
-          arr[5] > 0 ? arr[5] + "people are going so far!" : ""
+          arr[4] > 0 ? arr[4] + "people are going so far!" : ""
         }</p></div></li>`;
       });
       str += "</ul>";
