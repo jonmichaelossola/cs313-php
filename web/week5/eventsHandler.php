@@ -47,7 +47,7 @@
     $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
+      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"], row["post_id"]);
       array_push($plans, $arr);
     }
     echo json_encode($plans);
@@ -99,5 +99,42 @@
     $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
     $stmt->execute();
     echo "Post Created";
+  }
+
+  if (isset($_POST["deletePost"])) {
+    $id = $_POST["id"];
+    $stmt = $db->prepare('DELETE FROM posts WHERE post_id=:id');
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+    echo "Post Deleted";
+  }
+
+  if (isset($_POST["updatePost"])) {
+    $id = $_POST["id"];
+    $time = $_POST["time"];
+    $location = $_POST["location"];
+    $description = $_POST["description"];
+    $timeInHours = $_POST["timeInHours"];
+
+    $stmt = $db->prepare('UPDATE posts SET location = :location, time = :time, timehours = :timeInHours, description = :description WHERE post_id = :id');
+    $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
+    $stmt->bindValue(":time", $time, PDO::PARAM_STR);
+    $stmt->bindValue(":location", $location, PDO::PARAM_STR);
+    $stmt->bindValue(":description", $description, PDO::PARAM_STR);
+    $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+    echo "Post Updated";
+  }
+
+  if (isset($_POST["likePost"])) {
+    $playerID = $_SESSION["userID"];
+    $postID = $_POST["postID"];
+
+    $stmt = $db->prepare('INSERT INTO likes (player_id, post_id) VALUES (:playerID, :postID)');
+    $stmt->bindValue(":userID", $playerID, PDO::PARAM_STR);
+    $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
+    $stmt->execute();
+    echo "Like Recorded";
   }
 ?>

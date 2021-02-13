@@ -80,5 +80,7 @@ ul {
 .planHeaderWrapper {
     display: flex;
     justify-content: space-around;
-    width: 300px;
+    width: 700px;
+    margin: auto;
+    align-items: center;
 }

@@ -75,7 +75,7 @@ function getSelfPosts() {
       const posts = JSON.parse(this.responseText);
       let str = `<ul class="plansList">`;
       posts.forEach(function(arr) {
-        str += `<li class="plansListIndividual"><div><p class="location">Location: ${
+        str += `<li class="plansListIndividual"><div class="postsIndividualWrapper"><div><p class="location">Location: ${
           arr[2]
         }</p><p class="date">Time: ${
           Number(arr[3].split(":")[0]) > 12
@@ -83,7 +83,13 @@ function getSelfPosts() {
             : arr[3].split(":")[0]
         }:${arr[3].split(":")[1]} ${
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
-        }</p><p class="description">${arr[0]}</p></div></li>`;
+        }</p><p class="description">${arr[0]}</p></div><div><button data-id="${
+          arr[4]
+        }" onclick="deletePost(event)"></button><a href="./updatePlan.php?id=${
+          arr[4]
+        }&location=${arr[2]}&description=${arr[0]}&timeHours=${
+          arr[3]
+        }">Update</a></div></div></li>`;
       });
       str += "</ul>";
       document.getElementById("yourPostsWrapper").innerHTML = str;
@@ -169,5 +175,50 @@ function submitPlan() {
 
   request.send(
     `createPost=true&time=${timeDays}&location=${location}&description=${description}&timeInHours=${timePlan}`
+  );
+}
+
+function deletePost(e) {
+  const id = e.target.getAttribute("data-id");
+
+  console.log(id);
+  let request = new XMLHttpRequest();
+  request.open("POST", "./eventsHandler.php", true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      if (this.responseText === "Post Deleted") {
+        location.reload();
+      }
+    }
+  };
+
+  request.send(`deletePost=true&id=${id}`);
+}
+
+function updatePost(e) {
+  const id = e.target.getAttribute("data-id");
+  const description = document.getElementById("PlanDescription").value;
+  const timePlan = document.getElementById("TimePlan").value + ":00";
+  const location = document.getElementById("Location").value;
+  const timeDays = formatDateForToday();
+
+  let request = new XMLHttpRequest();
+  request.open("GET", "./updatePlan.php", true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      if (this.responseText === "Post Deleted") {
+        window.location.href = "./plan.php";
+      }
+    }
+  };
+
+  request.send(
+    `updatePost=true&id=${id}&time=${timeDays}&timeInHours=${timePlan}&description=${description}&location=${location}`
   );
 }

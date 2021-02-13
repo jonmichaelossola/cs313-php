@@ -11,3 +11,8 @@ CREATE TABLE posts (
 	location varchar,
 	description varchar
 )
+
+CREATE TABLE likes (
+	player_id int references players(id),
+	post_id int references posts(post_id)
+);
