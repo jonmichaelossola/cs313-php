@@ -15,6 +15,7 @@
 		<h1>Register</h1>
 		<input type="text" placeholder="User Name" id="RegisterUsername" />
 		<input type="password" placeholder="Password" id="RegisterPassword" />
+		<input type="text" placeholder="Your City" id="City">
 		<button onclick="submitRegistrationInformation(event)">Submit</button>
 	</div>
 

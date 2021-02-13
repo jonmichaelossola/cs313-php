@@ -83,6 +83,7 @@
       $id = $row["id"];
     }
     $id+=1;
+    $_SESSION["userID"] = $id;
     // Insert player into database
     $stmt = $db->prepare('INSERT INTO players (name, city, id, password) VALUES (:username, :city, :id, :passphrase)');
     $stmt->bindValue(":username", $username, PDO::PARAM_STR);

@@ -45,6 +45,7 @@ ul {
     margin: auto;
     border-bottom: 1px solid black;
     padding: 10px 40px;
+    justify-content: space-between;
 }
 
 .selfHeader {
@@ -75,4 +76,8 @@ ul {
     text-align: left;
     padding-bottom: 50px;
     border-bottom: 1px solid black;
+}
+
+.planHeaderWrapper {
+    margin: auto;
 }

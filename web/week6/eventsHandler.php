@@ -18,7 +18,7 @@
     echo 'SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'';
   }
 
-  if (isset($_POST["username"]) && isset($_POST["password"])) {
+  if (isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password"])) {
     $name = "";
     foreach ($db->query('SELECT * FROM players WHERE name=\'' . $_POST["username"] . '\' AND password=\'' . $_POST["password"] . '\'') as $row)
     {
@@ -33,10 +33,21 @@
 
   if (isset($_GET["posts"])) {
     $plans = array();
-    $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
+      $arr = array();
       array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
+      $numLikes = 0;
+      $hasLiked = false;
+      foreach ($db->query('SELECT * FROM likes WHERE post_id=\'' . $row["post_id"] . '\'') as $nestedRow) {
+        if ($_SESSION["userID"] === $nestedRow["player_id"]) {
+          $hasLiked = true;
+        }
+        $numLikes += 1;
+      }
+      array_push($arr, $numLikes);
+      array_push($arr, $hasLiked);
+      array_push($arr, $row["post_id"]);
       array_push($plans, $arr);
     }
     echo json_encode($plans);
@@ -44,11 +55,9 @@
 
   if (isset($_GET["selfposts"])) {
     $plans = array();
-    $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
-      array_push($plans, $arr);
+      array_push($plans, $row);
     }
     echo json_encode($plans);
   }
@@ -60,5 +69,93 @@
       array_push($arr, $row["name"], $row["city"]);
     }
     echo json_encode($arr);
+  }
+
+  // INSERT OPERATIONS
+  if (isset($_POST["register"])) {
+    $username = $_POST["username"];
+    $passphrase = $_POST["passphrase"];
+    $city = $_POST["city"];
+    $id = 0;
+    // get largest ID from database
+    foreach ($db->query('SELECT id from players') as $row)
+    {
+      $id = $row["id"];
+    }
+    $id+=1;
+    $_SESSION["userID"] = $id;
+    // Insert player into database
+    $stmt = $db->prepare('INSERT INTO players (name, city, id, password) VALUES (:username, :city, :id, :passphrase)');
+    $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+    $stmt->bindValue(":city", $city, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
+    $stmt->execute();
+    echo "registered";
+  }
+
+  if (isset($_POST["createPost"])) {
+    $playerID = $_SESSION["userID"];
+    $time = $_POST["time"];
+    $location = $_POST["location"];
+    $description = $_POST["description"];
+    $timeInHours = $_POST["timeInHours"];
+
+    $stmt = $db->prepare('INSERT INTO posts (playerid, time, location, description, timehours) VALUES (:playerID, :time, :location, :description, :timeInHours)');
+    $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
+    $stmt->bindValue(":time", $time, PDO::PARAM_STR);
+    $stmt->bindValue(":location", $location, PDO::PARAM_STR);
+    $stmt->bindValue(":description", $description, PDO::PARAM_STR);
+    $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
+    $stmt->execute();
+    echo "Post Created";
+  }
+
+  if (isset($_POST["deletePost"])) {
+    $id = $_POST["id"];
+    $stmt = $db->prepare('DELETE FROM posts WHERE post_id=:id');
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+    echo "Post Deleted";
+  }
+
+  if (isset($_POST["updatePost"])) {
+    $id = $_POST["id"];
+    $time = $_POST["time"];
+    $location = $_POST["location"];
+    $description = $_POST["description"];
+    $timeInHours = $_POST["timeInHours"];
+    // echo $id . " " . $location . " " . $time . " " . $description . " " . $timeInHours;
+    $stmt = $db->prepare('UPDATE posts SET location = :location, time = :time, timehours = :timeInHours, description = :description WHERE post_id = :id');
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->bindValue(":time", $time, PDO::PARAM_STR);
+    $stmt->bindValue(":location", $location, PDO::PARAM_STR);
+    $stmt->bindValue(":description", $description, PDO::PARAM_STR);
+    $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
+    $stmt->execute();
+    echo "Post Updated";
+  }
+
+  if (isset($_POST["likePost"])) {
+    $playerID = $_SESSION["userID"];
+    $postID = $_POST["postID"];
+
+    $stmt = $db->prepare('INSERT INTO likes (player_id, post_id) VALUES (:playerID, :postID)');
+    $stmt->bindValue(":playerID", $playerID, PDO::PARAM_INT);
+    $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
+    $stmt->execute();
+    echo "Like Recorded";
+  }
+
+  if (isset($_GET["getLikesForPost"])) {
+    $postID = $_GET["post_id"];
+    $userID = $_SESSION["userID"];
+
+    $stmt = $db->prepare('SELECT * FROM likes WHERE player_id != :user_id AND post_id = :post_id');
+    $stmt->bindValue(":user_id", $userID, PDO::PARAM_STR);
+    $stmt->bindValue(":post_id", $postID, PDO::PARAM_INT);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($rows);
   }
 ?>
