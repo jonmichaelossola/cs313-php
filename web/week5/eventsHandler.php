@@ -70,10 +70,10 @@
     $arr = array();
     $id = 0;
     // get largest ID from database
-    foreach ($db->query('SELECT MAX(id) from players') as $row)
-    {
-      $id = $row["id"];
-    }
+    // foreach ($db->query('SELECT MAX(id) from players') as $row)
+    // {
+    //   $id = $row["id"];
+    // }
     // Insert player into database
     // $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
     // $stmt->bindValue(":username", $username, PDO::PARAM_STR);
