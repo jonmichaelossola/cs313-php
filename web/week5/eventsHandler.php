@@ -18,7 +18,7 @@
     echo 'SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'';
   }
 
-  if (isset($_POST["username"]) && isset($_POST["password"])) {
+  if (isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password"])) {
     $name = "";
     foreach ($db->query('SELECT * FROM players WHERE name=\'' . $_POST["username"] . '\' AND password=\'' . $_POST["password"] . '\'') as $row)
     {
@@ -69,12 +69,11 @@
     $city = $_POST["city"];
     $arr = array();
     $id = 0;
-    echo "TEST";
     // get largest ID from database
-    // foreach ($db->query('SELECT MAX(id) from players') as $row)
-    // {
-    //   $id = $row["id"];
-    // }
+    foreach ($db->query('SELECT MAX(id) from players') as $row)
+    {
+      $id = $row["id"];
+    }
     // Insert player into database
     // $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
     // $stmt->bindValue(":username", $username, PDO::PARAM_STR);

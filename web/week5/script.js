@@ -15,7 +15,7 @@ function getUserInformation(e) {
     }
   };
 
-  request.send(`username=${username}&password=${password}`);
+  request.send(`login=true&username=${username}&password=${password}`);
 }
 
 function test() {
