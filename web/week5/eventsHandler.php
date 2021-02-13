@@ -37,9 +37,16 @@
     {
       $arr = array();
       array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
+      $numLikes = 0;
+      $hasLiked = false;
       foreach ($db->query('SELECT * FROM likes WHERE post_id=\'' . $row["post_id"] . '\'') as $nestedRow) {
-        array_push($arr, $nestedRow);
+        if ($_SESSION["userID"] === $nestedRow["player_id"]) {
+          $hasLiked = true;
+        }
+        $numLikes += 1;
       }
+      array_push($arr, $numLikes);
+      array_push($arr, $hasLiked);
       array_push($plans, $arr);
     }
     echo json_encode($plans);
