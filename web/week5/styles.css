@@ -45,6 +45,7 @@ ul {
     margin: auto;
     border-bottom: 1px solid black;
     padding: 10px 40px;
+    justify-content: space-between;
 }
 
 .selfHeader {
