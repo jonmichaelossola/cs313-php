@@ -51,7 +51,7 @@ function getPosts(e) {
             : arr[3].split(":")[0]
         }:${arr[3].split(":")[1]} ${
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
-        }</p><p class="description">${arr[0]}</p></div></li>`;
+        }</p><p class="description">${arr[0]}</p></div><div></div></li>`;
       });
       str += "</ul>";
       document.getElementById("PostsContainer").innerHTML = str;
@@ -216,7 +216,7 @@ function updatePost(e) {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
-      if (this.responseText === "Post Deleted") {
+      if (this.responseText === "Post Updated") {
         window.location.href = "./plan.php";
       }
     }

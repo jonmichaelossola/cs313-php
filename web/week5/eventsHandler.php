@@ -35,9 +35,11 @@
     $plans = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      $arr = array();
-      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
-      array_push($plans, $arr);
+      foreach ($db->query('SELECT * FROM likes WHERE post_id=\'' . $row["post_id"] . '\'') as $nestedRow) {
+        $arr = array();
+        array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"], $nestedRow);
+        array_push($plans, $arr);
+      }
     }
     echo json_encode($plans);
   }
@@ -133,5 +135,17 @@
     $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
     $stmt->execute();
     echo "Like Recorded";
+  }
+
+  if (isset($_GET["getLikesForPost"])) {
+    $postID = $_GET["post_id"];
+    $userID = $_SESSION["userID"];
+
+    $stmt = $db->prepare('SELECT * FROM likes WHERE player_id != :user_id AND post_id = :post_id');
+    $stmt->bindValue(":user_id", $userID, PDO::PARAM_STR);
+    $stmt->bindValue(":post_id", $postID, PDO::PARAM_INT);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($rows);
   }
 ?>
