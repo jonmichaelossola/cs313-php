@@ -47,6 +47,7 @@
       }
       array_push($arr, $numLikes);
       array_push($arr, $hasLiked);
+      array_push($arr, $row["post_id"]);
       array_push($plans, $arr);
     }
     echo json_encode($plans);

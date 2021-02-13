@@ -55,7 +55,9 @@ function getPosts(e) {
           arr[0]
         }</p></div><div class="peopleGoing">${
           arr[5] === false
-            ? `<button onclick="likePost(event)">I am going!</button>`
+            ? `<button data-postId="${
+                arr[6]
+              }" onclick="likePost(event)">I am going!</button>`
             : ""
         }<p>${
           arr[4] > 1 ? arr[4] + " more people are going so far!" : ""
@@ -235,4 +237,21 @@ function updatePost(e) {
   );
 }
 
-function likePost() {}
+function likePost(e) {
+  const postId = e.target.getAttribute("data-postId");
+
+  let request = new XMLHttpRequest();
+  request.open("POST", `./eventsHandler.php`, true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      if (this.responseText === "Like Recorded") {
+        window.location.reload();
+      }
+    }
+  };
+
+  request.send(`likePost=true&postID=${postId}`);
+}
