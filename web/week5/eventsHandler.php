@@ -139,11 +139,11 @@
     $playerID = $_SESSION["userID"];
     $postID = $_POST["postID"];
 
-    $stmt = $db->prepare('INSERT INTO likes (player_id, post_id) VALUES (:playerID, :postID)');
-    $stmt->bindValue(":userID", $playerID, PDO::PARAM_STR);
-    $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
-    $stmt->execute();
-    echo "Like Recorded";
+    // $stmt = $db->prepare('INSERT INTO likes (player_id, post_id) VALUES (:playerID, :postID)');
+    // $stmt->bindValue(":userID", $playerID, PDO::PARAM_STR);
+    // $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
+    // $stmt->execute();
+    echo $playerID . " " . $postID;
   }
 
   if (isset($_GET["getLikesForPost"])) {
