@@ -74,15 +74,16 @@
     {
       $id = $row["id"];
     }
+    $id+=1;
     // Insert player into database
-    // $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
-    // $stmt->bindValue(":username", $username, PDO::PARAM_STR);
-    // $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
-    // $stmt->bindValue(":city", $city, PDO::PARAM_STR);
-    // $stmt->bindValue(":id", $id, PDO::PARAM_STR);
-    // $stmt->execute();
-    // $_SESSION["userID"] = $row["id"]; 
-    echo $id + 1;
+    $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
+    $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+    $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
+    $stmt->bindValue(":city", $city, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_STR);
+    $stmt->execute();
+    $_SESSION["userID"] = $row["id"]; 
+    echo "success" . $row["id"] . " " . $row["name"];
   }
 
   if (isset($_POST["createPost"])) {
