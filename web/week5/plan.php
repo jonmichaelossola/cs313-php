@@ -9,7 +9,7 @@
 
 <body onload="getSelfInformation()">
     <h1 class="selfHeader">Your Information</h1>
-    <div id="selfInfoWrapper">
+    <div class="selfCSSInfo" id="selfInfoWrapper">
         
     </div>
 

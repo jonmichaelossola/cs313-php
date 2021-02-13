@@ -61,4 +61,43 @@
     }
     echo json_encode($arr);
   }
+
+  // INSERT OPERATIONS
+  if (isset($_POST["register"])) {
+    $username = $_POST["username"];
+    $passphrase = $_POST["passphrase"];
+    $city = $_POST["city"];
+    $arr = array();
+    // get largest ID from database
+    foreach ($db->query('SELECT MAX(id) from players') as $row)
+    {
+      $id = $row["id"] + 1;
+    }
+    // Insert player into database
+    $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
+    $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+    $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
+    $stmt->bindValue(":city", $city, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_STR);
+    $stmt->execute();
+    $_SESSION["userID"] = $row["id"]; 
+    echo "registered";
+  }
+
+  if (isset($_POST["createPost"])) {
+    $playerID = $_SESSION["userID"];
+    $time = $_POST["time"];
+    $location = $_POST["location"];
+    $description = $_POST["description"];
+    $timeInHours = $_POST["timeInHours"];
+
+    $stmt = $db->prepare('INSERT INTO plans (:playerID, :time, :location, :description, :timeInHours)');
+    $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
+    $stmt->bindValue(":time", $time, PDO::PARAM_STR);
+    $stmt->bindValue(":location", $location, PDO::PARAM_STR);
+    $stmt->bindValue(":description", $description, PDO::PARAM_STR);
+    $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
+    $stmt->execute();
+    echo "Post Created";
+  }
 ?>

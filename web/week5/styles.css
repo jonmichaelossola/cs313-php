@@ -51,7 +51,7 @@ ul {
     text-align: center;
 }
 
-.selfInfoWrapper {
+.selfCSSInfo {
     text-align: center;
     border-bottom: 1px solid black;
     width: 100%;
@@ -65,7 +65,7 @@ ul {
 
 .yourPostsHeaderYouKnow {
     text-align: center;
-    margin-top: 15vh;
+    margin-top: 30px;
 }
 
 .createPlanWrapper {

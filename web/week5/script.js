@@ -1,5 +1,4 @@
 function getUserInformation(e) {
-  console.log("hello");
   const username = document.getElementById("Username").value;
   const password = document.getElementById("Password").value;
 
@@ -116,4 +115,26 @@ function getSelfInfo() {
   request.send();
 }
 
-function submitPlan(e) {}
+function submitRegistrationInformation() {
+  const username = document.getElementById("RegisterUsername").value;
+  const password = document.getElementById("RegisterPassword").value;
+  const city = document.getElementById("City").value;
+
+  console.log(username, password, city);
+  let request = new XMLHttpRequest();
+  request.open("POST", "./eventsHandler.php", true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      if (this.responseText === "registered") {
+        window.location.href = "./home.php";
+      }
+    }
+  };
+
+  request.send(
+    `createPost=true&username=${username}&password=${password}&city=${city}`
+  );
+}
