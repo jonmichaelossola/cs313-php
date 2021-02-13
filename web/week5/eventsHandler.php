@@ -46,9 +46,7 @@
     $plans = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid=\'' . $_SESSION["userID"] . '\'') as $row)
     {
-      $arr = array();
-      array_push($arr, $row);
-      array_push($plans, $arr);
+      array_push($plans, $row);
     }
     echo json_encode($plans);
   }

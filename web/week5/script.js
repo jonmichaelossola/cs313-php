@@ -40,6 +40,7 @@ function getPosts(e) {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const posts = JSON.parse(this.responseText);
+      console.log(posts);
       let str = `<ul class="plansList">`;
       posts.forEach(function(arr) {
         str += `<li class="plansListIndividual"><div><p class="location">Location: ${
@@ -84,11 +85,11 @@ function getSelfPosts() {
             : arr[3].split(":")[0]
         }:${arr[3].split(":")[1]} ${
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
-        }</p><p class="description">${arr[0]}</p></div><div><button data-id="${
-          arr[4]
-        }" onclick="deletePost(event)">Delete</button><a href="./updatePlan.php?id=${
-          arr[4]
-        }&location=${arr[2]}&description=${arr[0]}&timeHours=${
+        }</p><p class="description">${
+          arr[0]
+        }</p></div><div><button data-id="${arr[4].toString()}" onclick="deletePost(event)">Delete</button><a href="./updatePlan.php?id=${arr[4].toString()}&location=${
+          arr[2]
+        }&description=${arr[0]}&timeHours=${
           arr[3]
         }">Update</a></div></div></li>`;
       });
