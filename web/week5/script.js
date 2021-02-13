@@ -135,6 +135,6 @@ function submitRegistrationInformation() {
   };
 
   request.send(
-    `register=true&username=${username}&password=${password}&city=${city}`
+    `register=true&username=${username}&passphrase=${password}&city=${city}`
   );
 }
