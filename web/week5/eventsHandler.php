@@ -82,7 +82,7 @@
     // $stmt->bindValue(":id", $id, PDO::PARAM_STR);
     // $stmt->execute();
     // $_SESSION["userID"] = $row["id"]; 
-    echo $id;
+    echo $id + 1;
   }
 
   if (isset($_POST["createPost"])) {
