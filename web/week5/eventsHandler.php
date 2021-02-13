@@ -33,9 +33,9 @@
 
   if (isset($_GET["posts"])) {
     $plans = array();
-    $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
+      $arr = array();
       array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
       array_push($plans, $arr);
     }
@@ -44,9 +44,9 @@
 
   if (isset($_GET["selfposts"])) {
     $plans = array();
-    $arr = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid=\'' . $_SESSION["userID"] . '\'') as $row)
     {
+      $arr = array();
       array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"], row["post_id"]);
       array_push($plans, $arr);
     }
