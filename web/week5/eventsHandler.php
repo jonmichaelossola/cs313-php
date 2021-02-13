@@ -71,7 +71,7 @@
     // get largest ID from database
     foreach ($db->query('SELECT MAX(id) from players') as $row)
     {
-      $id = $row["id"] + 1;
+      $id = $row["id"];
     }
     // Insert player into database
     // $stmt = $db->prepare('INSERT INTO players (:username, :passphrase, :id, :city)');
