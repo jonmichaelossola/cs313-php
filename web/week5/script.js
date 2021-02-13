@@ -206,7 +206,7 @@ function updatePost(e) {
   const timeDays = formatDateForToday();
 
   let request = new XMLHttpRequest();
-  request.open("GET", "./updatePlan.php", true);
+  request.open("GET", "./eventsHandler.php", true);
   request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   request.onreadystatechange = function() {
@@ -222,3 +222,5 @@ function updatePost(e) {
     `updatePost=true&id=${id}&time=${timeDays}&timeInHours=${timePlan}&description=${description}&location=${location}`
   );
 }
+
+function likePost() {}
