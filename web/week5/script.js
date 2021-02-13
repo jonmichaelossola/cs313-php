@@ -85,7 +85,7 @@ function getSelfPosts() {
           Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
         }</p><p class="description">${arr[0]}</p></div><div><button data-id="${
           arr[4]
-        }" onclick="deletePost(event)"></button><a href="./updatePlan.php?id=${
+        }" onclick="deletePost(event)">Delete</button><a href="./updatePlan.php?id=${
           arr[4]
         }&location=${arr[2]}&description=${arr[0]}&timeHours=${
           arr[3]

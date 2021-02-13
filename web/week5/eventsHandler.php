@@ -117,12 +117,11 @@
     $timeInHours = $_POST["timeInHours"];
 
     $stmt = $db->prepare('UPDATE posts SET location = :location, time = :time, timehours = :timeInHours, description = :description WHERE post_id = :id');
-    $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->bindValue(":time", $time, PDO::PARAM_STR);
     $stmt->bindValue(":location", $location, PDO::PARAM_STR);
     $stmt->bindValue(":description", $description, PDO::PARAM_STR);
     $stmt->bindValue(":timeInHours", $timeInHours, PDO::PARAM_STR);
-    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     echo "Post Updated";
   }
