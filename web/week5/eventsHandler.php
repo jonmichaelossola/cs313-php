@@ -92,7 +92,7 @@
     $description = $_POST["description"];
     $timeInHours = $_POST["timeInHours"];
 
-    $stmt = $db->prepare('INSERT INTO plans (:playerID, :time, :location, :description, :timeInHours)');
+    $stmt = $db->prepare('INSERT INTO posts (:playerID, :time, :location, :description, :timeInHours)');
     $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
     $stmt->bindValue(":time", $time, PDO::PARAM_STR);
     $stmt->bindValue(":location", $location, PDO::PARAM_STR);
