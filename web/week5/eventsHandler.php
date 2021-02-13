@@ -69,6 +69,7 @@
     $city = $_POST["city"];
     $arr = array();
     $id = 0;
+    echo "TEST";
     // get largest ID from database
     // foreach ($db->query('SELECT MAX(id) from players') as $row)
     // {
