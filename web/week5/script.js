@@ -135,26 +135,39 @@ function submitRegistrationInformation() {
   );
 }
 
+function formatDateForToday() {
+  var d = new Date(),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
+
 function submitPlan() {
   const description = document.getElementById("PlanDescription").value;
-  const timePlan = document.getElementById("TimePlan").value;
+  const timePlan = document.getElementById("TimePlan").value + ":00";
   const location = document.getElementById("Location").value;
+  const timeDays = formatDateForToday();
 
-  console.log(description, timePlan, location);
-  // let request = new XMLHttpRequest();
-  // request.open("POST", "./eventsHandler.php", true);
-  // request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  console.log(description, timePlan, location, timeDays);
+  let request = new XMLHttpRequest();
+  request.open("POST", "./eventsHandler.php", true);
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  // request.onreadystatechange = function() {
-  //   if (this.readyState == 4 && this.status == 200) {
-  //     console.log(this.responseText);
-  //     if (this.responseText === "registered") {
-  //       window.location.href = "./home.php";
-  //     }
-  //   }
-  // };
+  request.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      if (this.responseText === "registered") {
+        window.location.href = "./home.php";
+      }
+    }
+  };
 
-  // request.send(
-  //   `createPost=true&time=${timePlan}&location=${location}&description=${description}&timeInHours=${timePlan}`
-  // );
+  request.send(
+    `createPost=true&time=${timeDays}&location=${location}&description=${description}&timeInHours=${timePlan}`
+  );
 }
