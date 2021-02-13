@@ -143,7 +143,7 @@
     $stmt->bindValue(":playerID", $playerID, PDO::PARAM_INT);
     $stmt->bindValue(":postID", $postID, PDO::PARAM_INT);
     $stmt->execute();
-    echo $playerID . " " . $postID;
+    echo "Like Recorded";
   }
 
   if (isset($_GET["getLikesForPost"])) {
