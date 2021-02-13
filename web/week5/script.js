@@ -205,7 +205,7 @@ function deletePost(e) {
 function updatePost(e) {
   const id = e.target.getAttribute("data-id");
   const description = document.getElementById("PlanDescription").value;
-  const timePlan = document.getElementById("TimePlan").value + ":00";
+  const timePlan = document.getElementById("TimePlan").value;
   const location = document.getElementById("Location").value;
   const timeDays = formatDateForToday();
 
