@@ -70,7 +70,7 @@
     $arr = array();
     $id = 0;
     // get largest ID from database
-    foreach ($db->query('SELECT MAX(id) from players') as $row)
+    foreach ($db->query('SELECT id from players') as $row)
     {
       $id = $row["id"];
     }
