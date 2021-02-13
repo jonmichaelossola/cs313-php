@@ -35,11 +35,12 @@
     $plans = array();
     foreach ($db->query('SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'') as $row)
     {
+      $arr = array();
+      array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"]);
       foreach ($db->query('SELECT * FROM likes WHERE post_id=\'' . $row["post_id"] . '\'') as $nestedRow) {
-        $arr = array();
-        array_push($arr, $row["description"], $row["time"], $row["location"], $row["timehours"], $nestedRow);
-        array_push($plans, $arr);
+        array_push($arr, $nestedRow);
       }
+      array_push($plans, $arr);
     }
     echo json_encode($plans);
   }
