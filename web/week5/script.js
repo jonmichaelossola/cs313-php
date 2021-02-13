@@ -78,20 +78,22 @@ function getSelfPosts() {
       let str = `<ul class="plansList">`;
       posts.forEach(function(arr) {
         str += `<li class="plansListIndividual"><div class="postsIndividualWrapper"><div><p class="location">Location: ${
-          arr[2]
+          arr["location"]
         }</p><p class="date">Time: ${
-          Number(arr[3].split(":")[0]) > 12
-            ? (Number(arr[3].split(":")[0]) - 12).toString()
-            : arr[3].split(":")[0]
-        }:${arr[3].split(":")[1]} ${
-          Number(arr[3].split(":")[0]) > 11 ? "PM" : "AM"
+          Number(arr["timehours"].split(":")[0]) > 12
+            ? (Number(arr["timehours"].split(":")[0]) - 12).toString()
+            : arr["timehours"].split(":")[0]
+        }:${arr["timehours"].split(":")[1]} ${
+          Number(arr["timehours"].split(":")[0]) > 11 ? "PM" : "AM"
         }</p><p class="description">${
-          arr[0]
-        }</p></div><div><button data-id="${arr[4].toString()}" onclick="deletePost(event)">Delete</button><a href="./updatePlan.php?id=${arr[4].toString()}&location=${
-          arr[2]
-        }&description=${arr[0]}&timeHours=${
-          arr[3]
-        }">Update</a></div></div></li>`;
+          arr["description"]
+        }</p></div><div><button data-id="${
+          arr["post_id"]
+        }" onclick="deletePost(event)">Delete</button><a href="./updatePlan.php?id=${
+          arr["post_id"]
+        }&location=${arr["location"]}&description=${
+          arr["description"]
+        }&timeHours=${arr["timehours"]}">Update</a></div></div></li>`;
       });
       str += "</ul>";
       document.getElementById("yourPostsWrapper").innerHTML = str;
