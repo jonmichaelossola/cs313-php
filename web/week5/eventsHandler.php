@@ -67,7 +67,6 @@
     $username = $_POST["username"];
     $passphrase = $_POST["passphrase"];
     $city = $_POST["city"];
-    $arr = array();
     $id = 0;
     // get largest ID from database
     foreach ($db->query('SELECT id from players') as $row)
@@ -80,7 +79,7 @@
     $stmt->bindValue(":username", $username, PDO::PARAM_STR);
     $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
     $stmt->bindValue(":city", $city, PDO::PARAM_STR);
-    $stmt->bindValue(":id", $id, PDO::PARAM_STR);
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $_SESSION["userID"] = $row["id"]; 
     echo "success" . $row["id"] . " " . $row["name"];
