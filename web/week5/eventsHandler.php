@@ -81,6 +81,7 @@
     $stmt->bindValue(":id", $id, PDO::PARAM_INT);
     $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
     $stmt->execute();
+    echo "registered";
   }
 
   if (isset($_POST["createPost"])) {
@@ -90,7 +91,7 @@
     $description = $_POST["description"];
     $timeInHours = $_POST["timeInHours"];
 
-    $stmt = $db->prepare('INSERT INTO posts VALUES (:playerID, :time, :location, :description, :timeInHours)');
+    $stmt = $db->prepare('INSERT INTO posts (playerid, time, location, description, timehours) VALUES (:playerID, :time, :location, :description, :timeInHours)');
     $stmt->bindValue(":playerID", $playerID, PDO::PARAM_STR);
     $stmt->bindValue(":time", $time, PDO::PARAM_STR);
     $stmt->bindValue(":location", $location, PDO::PARAM_STR);

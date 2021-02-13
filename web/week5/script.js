@@ -32,10 +32,6 @@ function test() {
   request.send();
 }
 
-function submitRegistrationInformation(e) {
-  // to make when we can update and create data
-}
-
 function getPosts(e) {
   let request = new XMLHttpRequest();
   request.open("GET", `./eventsHandler.php?posts=true`, true);
@@ -137,4 +133,28 @@ function submitRegistrationInformation() {
   request.send(
     `register=true&username=${username}&passphrase=${password}&city=${city}`
   );
+}
+
+function submitPlan() {
+  const description = document.getElementById("PlanDescription").value;
+  const timePlan = document.getElementById("TimePlan").value;
+  const location = document.getElementById("Location").value;
+
+  console.log(description, timePlan, location);
+  // let request = new XMLHttpRequest();
+  // request.open("POST", "./eventsHandler.php", true);
+  // request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  // request.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //     console.log(this.responseText);
+  //     if (this.responseText === "registered") {
+  //       window.location.href = "./home.php";
+  //     }
+  //   }
+  // };
+
+  // request.send(
+  //   `createPost=true&time=${timePlan}&location=${location}&description=${description}&timeInHours=${timePlan}`
+  // );
 }
