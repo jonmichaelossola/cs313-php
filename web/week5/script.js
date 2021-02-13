@@ -73,6 +73,7 @@ function getSelfPosts() {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const posts = JSON.parse(this.responseText);
+      console.log(posts);
       let str = `<ul class="plansList">`;
       posts.forEach(function(arr) {
         str += `<li class="plansListIndividual"><div class="postsIndividualWrapper"><div><p class="location">Location: ${
