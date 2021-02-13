@@ -15,9 +15,9 @@
 
     <div class="createPlanWrapper">
         <h1>Create a Plan</h1>
-        <input type="text" class="createPlanInput" placeholder="Description" />
-        <input type="time" placeholder="Time" />
-        <input type="text" class="createPlanInput" placeholder="Location" />
+        <input type="text" id="PlanDescription" class="createPlanInput" placeholder="Description" />
+        <input type="time" id="TimePlan" placeholder="Time" />
+        <input type="text" id="Location" class="createPlanInput" placeholder="Location" />
         <button onclick="submitPlan(event)">Submit</button>
     </div>
 
