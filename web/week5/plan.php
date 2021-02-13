@@ -8,7 +8,10 @@
 </head>
 
 <body onload="getSelfInformation()">
-    <h1 class="selfHeader">Your Information</h1>
+    <div class="planHeaderWrapper">
+      <a href="./home.php">Back to Home</a>
+      <h1 class="selfHeader">Your Information</h1>
+    </div>
     <div class="selfCSSInfo" id="selfInfoWrapper">
         
     </div>
