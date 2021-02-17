@@ -30,7 +30,8 @@ function submitLoginInfo() {
 
 	  request.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	      console.log(this.responseText);
+	      console.log(JSON.parse(this.responseText));
+
 	      // if (this.responseText !== "failed") {
 	      //   window.location.href = "./home.php";
 	      // }
