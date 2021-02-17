@@ -46,7 +46,7 @@ session_start();
 
     foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
     {
-      if (password_verify($passwd, $row["password"])) {
+      if (password_verify($row["password"], $passwd)) {
         $user = $row;
         $_SESSION["id"] = $row["id"];
       }
