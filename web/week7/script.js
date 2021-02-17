@@ -37,5 +37,5 @@ function submitLoginInfo() {
 	    }
 	  };
 
-	  request.send(`login=true&username=${username}&password=${password}`);
+	  request.send(`loginTest=true&username=${username}&password=${password}`);
 }

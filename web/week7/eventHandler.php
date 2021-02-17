@@ -47,7 +47,7 @@ session_start();
     echo "registered";
   }
 
-  if (isset($_POST["login"])) {
+  if (isset($_POST["loginTest"])) {
     echo "hello?";
     // $username = $_POST["username"];
     // $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
