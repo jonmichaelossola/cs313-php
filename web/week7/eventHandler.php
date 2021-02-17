@@ -34,18 +34,17 @@ session_start();
   if (isset($_POST["register"])) {
     // create username / passwd in db
     $id = rand();
-    $username = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $passwd = $_POST["password"];
+    $username = $_POST["username"];
+    $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-    echo $id . " " . $username . " " . $passwd;
+    // echo $id . " " . $username . " " . $passwd;
 
-    // $stmt = $db->prepare('INSERT INTO users (id, username, password) VALUES (:id, :username, :password)');
-    // $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-    // $stmt->bindValue(":username", $username, PDO::PARAM_STR);
-    // $stmt->bindValue(":password", $passwd, PDO::PARAM_STR);
-    // $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
-    // $stmt->execute();
-    // echo "registered";
+    $stmt = $db->prepare('INSERT INTO users (id, username, password) VALUES (:id, :username, :password)');
+    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+    $stmt->bindValue(":password", $passwd, PDO::PARAM_STR);
+    $stmt->execute();
+    echo "registered";
   }
 
 ?>
