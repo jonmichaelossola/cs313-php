@@ -52,7 +52,7 @@ session_start();
         $_SESSION["id"] = $row["id"];
       }
     }
-    echo $user;
+    echo json_encode($user);
   }
 
 ?>
