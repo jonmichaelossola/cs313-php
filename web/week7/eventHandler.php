@@ -48,11 +48,12 @@ session_start();
   }
 
   if (isset($_POST["login"])) {
-    $username = $_POST["username"];
-    $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $user = "failed";
+    echo "hello?";
+    // $username = $_POST["username"];
+    // $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    // $user = "failed";
 
-    echo $username . " " . $passwd;
+    // echo $username . " " . $passwd;
 
   //   foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
   //   {
