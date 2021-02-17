@@ -14,23 +14,6 @@ session_start();
 
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  if (isset($_GET["test"])) {
-    echo 'SELECT * FROM posts WHERE playerid!=\'' . $_SESSION["userID"] . '\'';
-  }
-
-  if (isset($_POST["login"]) && isset($_POST["username"]) && isset($_POST["password"])) {
-    $name = "";
-    foreach ($db->query('SELECT * FROM players WHERE name=\'' . $_POST["username"] . '\' AND password=\'' . $_POST["password"] . '\'') as $row)
-    {
-      $name = $row["name"] . ' ' . $row["password"];
-    }
-    if (empty($name)) {
-      echo "failed";
-    }
-    $_SESSION["userID"] = $row["id"]; 
-    echo $name;
-  }
-
   if (isset($_POST["register"])) {
     // create username / passwd in db
     $id = rand();
@@ -64,6 +47,6 @@ session_start();
   //   }
   //   json_encode($user);
   //   echo $user;
-  // }
+  }
 
 ?>
