@@ -32,9 +32,10 @@ function submitLoginInfo() {
 	    if (this.readyState == 4 && this.status == 200) {
 	      console.log(this.responseText);
 
-	      // if (this.responseText !== "failed") {
-	      //   window.location.href = "./home.php";
-	      // }
+	      if (this.responseText !== "failed") {
+	      	const json = JSON.parse(this.responseText);
+	        window.location.href = `./welcome.php?username=${json[1]}&id=${json[0]}`;
+	      }
 	    }
 	  };
 
