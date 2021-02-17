@@ -35,17 +35,24 @@ session_start();
     $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $user = "failed";
 
-    echo $username . " " . $passwd;
+    // echo $username . " " . $passwd;
 
-    // foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+    // $statement = $db->prepare('SELECT * from users WHERE username=:username');
+    // $statement->bindValue(":username", $username, PDO::PARAM_STR);
+    // $statement->execute();
+    // while ($row = $statement->fetch(PDO::FETCH_ASSOC))
     // {
-    //   if (password_verify($passwd, $row["password"])) {
-    //     $user = $row;
-    //     $_SESSION["id"] = $row["id"]
-    //   }
     // }
-    // json_encode($user);
-    // echo $user;
+
+    foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+    {
+      if (password_verify($passwd, $row["password"])) {
+        $user = $row;
+        $_SESSION["id"] = $row["id"];
+      }
+    }
+    json_encode($user);
+    echo $user;
   }
 
 ?>
