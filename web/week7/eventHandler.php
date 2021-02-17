@@ -52,15 +52,17 @@ session_start();
     $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $user = "failed";
 
-    foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
-    {
-      if (password_verify($passwd, $row["password"])) {
-        $user = $row;
-        $_SESSION["id"] = $row["id"]
-      }
-    }
-    json_encode($user);
-    echo $user;
-  }
+    echo $username . " " . $passwd;
+
+  //   foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+  //   {
+  //     if (password_verify($passwd, $row["password"])) {
+  //       $user = $row;
+  //       $_SESSION["id"] = $row["id"]
+  //     }
+  //   }
+  //   json_encode($user);
+  //   echo $user;
+  // }
 
 ?>
