@@ -47,4 +47,19 @@ session_start();
     echo "registered";
   }
 
+  if (isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $user = "";
+
+    foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+    {
+      if (password_verify($passwd, $row["password"])) {
+        $user = $row;
+      }
+    }
+    json_encode($user);
+    echo $user;
+  }
+
 ?>
