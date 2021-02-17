@@ -37,13 +37,15 @@ session_start();
     $username = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $passwd = $_POST["password"];
 
-    $stmt = $db->prepare('INSERT INTO users (id, username, password) VALUES (:id, :username, :password)');
-    $stmt->bindValue(":id", $id, PDO::PARAM_INT);
-    $stmt->bindValue(":username", $username, PDO::PARAM_STR);
-    $stmt->bindValue(":password", $passwd, PDO::PARAM_STR);
-    $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
-    $stmt->execute();
-    echo "registered";
+    echo $id . " " . $username . " " . $passwd;
+
+    // $stmt = $db->prepare('INSERT INTO users (id, username, password) VALUES (:id, :username, :password)');
+    // $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+    // $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+    // $stmt->bindValue(":password", $passwd, PDO::PARAM_STR);
+    // $stmt->bindValue(":passphrase", $passphrase, PDO::PARAM_STR);
+    // $stmt->execute();
+    // echo "registered";
   }
 
 ?>
