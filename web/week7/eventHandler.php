@@ -31,22 +31,21 @@ session_start();
   }
 
   if (isset($_POST["loginTest"])) {
-    echo "hello?";
-    // $username = $_POST["username"];
-    // $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    // $user = "failed";
+    $username = $_POST["username"];
+    $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $user = "failed";
 
-    // echo $username . " " . $passwd;
+    echo $username . " " . $passwd;
 
-  //   foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
-  //   {
-  //     if (password_verify($passwd, $row["password"])) {
-  //       $user = $row;
-  //       $_SESSION["id"] = $row["id"]
-  //     }
-  //   }
-  //   json_encode($user);
-  //   echo $user;
+    foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+    {
+      if (password_verify($passwd, $row["password"])) {
+        $user = $row;
+        $_SESSION["id"] = $row["id"]
+      }
+    }
+    json_encode($user);
+    echo $user;
   }
 
 ?>
