@@ -32,7 +32,7 @@ session_start();
 
   if (isset($_POST["loginTest"])) {
     $username = $_POST["username"];
-    $passwd = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $passwd = $_POST["password"];
     $user = "failed";
 
     // echo $username . " " . $passwd;
@@ -46,7 +46,7 @@ session_start();
 
     foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
     {
-      if (password_verify($row["password"], $passwd)) {
+      if (password_verify($passwd, $row["password"])) {
         $user = $row;
         $_SESSION["id"] = $row["id"];
       }
