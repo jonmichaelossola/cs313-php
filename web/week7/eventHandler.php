@@ -47,11 +47,10 @@ session_start();
     foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
     {
       if (password_verify($passwd, $row["password"])) {
-        $user = $row;
+        $user = $row["id"] . " " . $row["username"];
         $_SESSION["id"] = $row["id"];
       }
     }
-    json_encode($user);
     echo $user;
   }
 
