@@ -37,15 +37,15 @@ session_start();
 
     echo $username . " " . $passwd;
 
-    foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
-    {
-      if (password_verify($passwd, $row["password"])) {
-        $user = $row;
-        $_SESSION["id"] = $row["id"]
-      }
-    }
-    json_encode($user);
-    echo $user;
+    // foreach ($db->query('SELECT * from users WHERE username=' . '\'' . $username . '\'') as $row)
+    // {
+    //   if (password_verify($passwd, $row["password"])) {
+    //     $user = $row;
+    //     $_SESSION["id"] = $row["id"]
+    //   }
+    // }
+    // json_encode($user);
+    // echo $user;
   }
 
 ?>
