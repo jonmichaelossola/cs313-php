@@ -4,7 +4,7 @@ function submitRegistrationInfo() {
 	const username = document.getElementById("username").value;
 	const password = document.getElementById("password").value;
 	let request = new XMLHttpRequest();
-	  request.open("POST", "./eventsHandler.php", true);
+	  request.open("POST", "./eventHandler.php", true);
 	  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 	  request.onreadystatechange = function() {
